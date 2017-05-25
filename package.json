@@ -1,0 +1,22 @@
+{
+  "name": "gitlink",
+  "version": "0.1.0",
+  "description": "Get online link of file(Github, GitLab, Bitbucket)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qinezh/gitlink.git"
+  },
+  "keywords": [
+    "git"
+  ],
+  "author": "qinezh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qinezh/gitlink/issues"
+  },
+  "homepage": "https://github.com/qinezh/gitlink#readme",
+  "dependencies": {
+    "@types/node": "^7.0.22"
+  }
+}
