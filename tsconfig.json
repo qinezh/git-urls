@@ -4,6 +4,8 @@
         "target": "es6",
         "noImplicitAny": false,
         "sourceMap": true,
+        "outDir": "./dist",
+        "declaration": true,
         "strict": true
     }
 }

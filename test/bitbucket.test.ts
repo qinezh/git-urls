@@ -1,6 +1,6 @@
 import * as path from "path";
 
-import GitLink from "../src/gitLink";
+import GitLink from "../src/index";
 
 test("Get HTTPS url in BitBucket", async () => {
     const configInfo = {

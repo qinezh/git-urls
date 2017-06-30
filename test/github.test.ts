@@ -1,6 +1,6 @@
 import * as path from "path";
 
-import GitLink from "../src/gitLink";
+import GitLink from "../src/index";
 
 test("Get current project's git online link", async () => {
     const link = await GitLink.getOnlineLinkAsync(path.resolve("package.json"));

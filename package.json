@@ -1,8 +1,9 @@
 {
   "name": "gitlink",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Get online link of file(Github, GitLab, Bitbucket)",
-  "main": "index.js",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qinezh/gitlink.git"
@@ -29,6 +30,8 @@
     "ts-jest": "^20.0.4"
   },
   "scripts": {
+    "prepublish": "npm run build",
+    "build": "tsc",
     "test": "jest"
   },
   "jest": {
