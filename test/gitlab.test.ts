@@ -4,7 +4,7 @@ import GitUrl from "../src/index";
 
 test("Get HTTPS url in GitLab", async () => {
     const configInfo = {
-        remoteUrl: "https://gitlab.com/build/gitlink.git",
+        remoteUrl: "https://gitlab.com/build/git-urls.git",
         branchName: "master",
         startLine: undefined,
         endLine: undefined,
@@ -12,12 +12,12 @@ test("Get HTTPS url in GitLab", async () => {
     }
     const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
-    expect(link).toBe("https://gitlab.com/build/gitlink/blob/master/test/a.md");
+    expect(link).toBe("https://gitlab.com/build/git-urls/blob/master/test/a.md");
 });
 
 test("Get SSH URL in GitLab", async () => {
     const configInfo = {
-        remoteUrl: "git@gitlab.com:qinezh/gitlink",
+        remoteUrl: "git@gitlab.com:qinezh/git-urls",
         branchName: "master",
         startLine: undefined,
         endLine: undefined,
@@ -25,5 +25,5 @@ test("Get SSH URL in GitLab", async () => {
     }
     const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
-    expect(link).toBe("https://gitlab.com/qinezh/gitlink/blob/master/test/a.md");
+    expect(link).toBe("https://gitlab.com/qinezh/git-urls/blob/master/test/a.md");
 });

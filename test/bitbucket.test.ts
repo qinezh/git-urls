@@ -4,7 +4,7 @@ import GitUrl from "../src/index";
 
 test("Get HTTPS url in BitBucket", async () => {
     const configInfo = {
-        remoteUrl: "https://bitbucket.org/qinezh/gitlink.git",
+        remoteUrl: "https://bitbucket.org/qinezh/git-urls.git",
         branchName: "master",
         startLine: undefined,
         endLine: undefined,
@@ -12,12 +12,12 @@ test("Get HTTPS url in BitBucket", async () => {
     }
     const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
-    expect(link).toBe("https://bitbucket.org/qinezh/gitlink/src/master/test/a.md");
+    expect(link).toBe("https://bitbucket.org/qinezh/git-urls/src/master/test/a.md");
 });
 
 test("Get SSH URL in BitBucket", async () => {
     const configInfo = {
-        remoteUrl: "git@bitbucket.org:qinezh/gitlink.git",
+        remoteUrl: "git@bitbucket.org:qinezh/git-urls.git",
         branchName: "master",
         startLine: undefined,
         endLine: undefined,
@@ -25,5 +25,5 @@ test("Get SSH URL in BitBucket", async () => {
     }
     const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
-    expect(link).toBe("https://bitbucket.org/qinezh/gitlink/src/master/test/a.md");
+    expect(link).toBe("https://bitbucket.org/qinezh/git-urls/src/master/test/a.md");
 });
