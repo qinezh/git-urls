@@ -43,7 +43,7 @@
       "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
     },
     "testMatch": [
-      "**/test/*.(ts|js)"
+      "**/test/*.js"
     ]
   }
 }
