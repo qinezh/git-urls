@@ -17,6 +17,30 @@
   },
   "homepage": "https://github.com/qinezh/gitlink#readme",
   "dependencies": {
-    "@types/node": "^7.0.22"
+    "@types/fs-extra": "^3.0.2",
+    "@types/node": "^7.0.22",
+    "fs-extra": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^19.2.3",
+    "typescript": "^2.3.3",
+    "jest": "^20.0.4",
+    "jest-cli": "^20.0.4",
+    "ts-jest": "^20.0.4"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": [
+      "**/test/*.(ts|js)"
+    ]
   }
 }
