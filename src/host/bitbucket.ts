@@ -1,12 +1,6 @@
-import Host from "./host";
-import GitHub from "./github";
-import GitInfo from "../gitInfo";
-import ConfigInfo from "../configInfo";
+import DefaultHost from "./defaultHost";
 
-class BitBucket extends GitHub {
-    hostname = "bitbucket.org";
-    separateFolder = "src";
-
+export default class BitBucket extends DefaultHost {
+    protected hostname = "bitbucket.org";
+    protected separateFolder = "src";
 }
-
-export default BitBucket;

@@ -1,10 +1,5 @@
-import Host from "./host";
-import GitInfo from "../gitInfo";
-import ConfigInfo from "../configInfo";
-import GitHub from "./github";
+import DefaultHost from "./defaultHost";
 
-class GitLab extends GitHub {
-    hostname = "gitlab.com";
+export default class GitLab extends DefaultHost {
+    protected hostname = "gitlab.com";
 }
-
-export default GitLab;

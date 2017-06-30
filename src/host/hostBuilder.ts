@@ -4,7 +4,7 @@ import GitLab from "./gitlab";
 import BitBucket from "./bitbucket";
 import ConfigInfo from "../configInfo";
 
-class HostBuilder {
+export default class HostBuilder {
     static create(info: ConfigInfo): Host{
         const url = info.remoteUrl;
         if (url.indexOf("gitlab") >= 0) {
@@ -16,5 +16,3 @@ class HostBuilder {
         }
     }
 }
-
-export default HostBuilder;
