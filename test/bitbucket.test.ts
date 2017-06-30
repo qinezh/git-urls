@@ -1,6 +1,6 @@
 import * as path from "path";
 
-import GitLink from "../src/index";
+import GitUrl from "../src/index";
 
 test("Get HTTPS url in BitBucket", async () => {
     const configInfo = {
@@ -10,7 +10,7 @@ test("Get HTTPS url in BitBucket", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitLink.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
     expect(link).toBe("https://bitbucket.org/qinezh/gitlink/src/master/test/a.md");
 });
@@ -23,7 +23,7 @@ test("Get SSH URL in BitBucket", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitLink.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
 
     expect(link).toBe("https://bitbucket.org/qinezh/gitlink/src/master/test/a.md");
 });

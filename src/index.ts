@@ -5,7 +5,7 @@ import ConfigInfo from "./configInfo";
 import HostBuilder from "./host/hostBuilder";
 import Helper from "./helper";
 
-export default class GitLink {
+export default class GitUrl {
     public static async getOnlineLinkAsync(filePath: string, startLine?: number, endLine?: number): Promise<string> {
         const repoRoot = Helper.getRepoRoot(filePath);
         if (!repoRoot) {

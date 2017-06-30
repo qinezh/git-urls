@@ -1,12 +1,12 @@
 {
-  "name": "gitlink",
-  "version": "0.1.1",
-  "description": "Get online link of file(Github, GitLab, Bitbucket)",
+  "name": "git-urls",
+  "version": "0.1.0",
+  "description": "Get online URL of file(Github, GitLab, Bitbucket...)",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qinezh/gitlink.git"
+    "url": "git+https://github.com/qinezh/git-urls.git"
   },
   "keywords": [
     "git"
@@ -14,9 +14,9 @@
   "author": "qinezh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/qinezh/gitlink/issues"
+    "url": "https://github.com/qinezh/git-urls/issues"
   },
-  "homepage": "https://github.com/qinezh/gitlink#readme",
+  "homepage": "https://github.com/qinezh/git-urls#readme",
   "dependencies": {
     "@types/fs-extra": "^3.0.2",
     "@types/node": "^7.0.22",
