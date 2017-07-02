@@ -1,5 +1,5 @@
-import DefaultHost from "./defaultHost";
+import BasicHost from "./basicHost";
 
-export default class GitLab extends DefaultHost {
+export default class GitLab extends BasicHost {
     protected hostname = "gitlab.com";
 }

@@ -2,16 +2,16 @@ import Host from "./host";
 import GitInfo from "../gitInfo";
 import ConfigInfo from "../configInfo";
 
-export default class BasicHost implements Host {
+export default abstract class BasicHost implements Host {
     private readonly regex = /(https?:\/\/|git@)([^\/:]+)(?:\/|:)([^\/:]+)(?:\/|:)([^\/:]+)/;
 
-    protected hostname = "github.com";
-    protected separateFolder = "blob";
+    protected abstract hostname;
+    protected abstract separateFolder;
 
     parse(info: ConfigInfo): GitInfo {
         const matches = this.regex.exec(info.remoteUrl);
         if (!matches) {
-            throw new Error(`Can't parse ${info.remoteUrl} with GitHub rules`);
+            throw new Error(`Can't parse ${info.remoteUrl} with Default rules`);
         }
 
         const schema = matches[1];
