@@ -12,7 +12,6 @@ npm install git-urls
 
 ```javascript
 import GitUrl from "git-urls";
-import * as path from "path";
 
 const f = async () => {
     return await GitUrl.getOnlineLinkAsync(__filename);
