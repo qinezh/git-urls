@@ -3,7 +3,12 @@ import GitInfo from '../gitInfo'
 import ConfigInfo from "../configInfo";
 
 export default class Vsts implements Host {
-    private static urlRegex: RegExp = /https:\/\/\w+\.visualstudio\.com\/[/\w]+\/_git\/[^/]+/i;
+    /**
+     * The regular expression to match the VSTS Git URL.
+     * @example https://my-tenant.visualstudio.com/DefaultCollection/MyCollection/_git/my-repo
+     * @example ssh://my-tenant@my-tenant.visualstudio.com:22/DefaultCollection/MyCollection/_git/my-repo
+     */
+    private static urlRegex: RegExp = /(?:https:\/\/|ssh:\/\/.+@)(\w+)\.visualstudio\.com(?:\:\d+)?\/([/\w]+)\/_git\/([^/]+)/i;
 
     public static match(url: string): boolean {
         return Vsts.urlRegex.test(url);
@@ -22,8 +27,9 @@ export default class Vsts implements Host {
     }
 
     public assemble(info: GitInfo): string {
+        const baseUrl = info.repoName.replace(Vsts.urlRegex, "https://$1.visualstudio.com/$2/_git/$3");
         const path: string = encodeURIComponent(`/${info.relativefilePath}`);
-        let url =  `${info.repoName}?path=${path}&version=GB${info.branchName}&_a=contents`;
+        let url =  `${baseUrl}?path=${path}&version=GB${info.branchName}&_a=contents`;
 
         if (info.startLine) {
             url += `&lineStyle=plain&line=${info.startLine}&lineEnd=${info.endLine}`;
