@@ -42,6 +42,10 @@
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
     },
+    "testPathIgnorePatterns":[
+      "/node_modules/",
+      "/dist/"
+    ],
     "testMatch": [
       "**/test/*.ts"
     ]

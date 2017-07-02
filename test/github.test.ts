@@ -58,3 +58,16 @@ test("Get HTTPS URL with username in GitHub", async () => {
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test/a.md");
 });
+
+test("Get URL with space in file path in GitHub", async () => {
+    const configInfo = {
+        remoteUrl: "https://qinezh@github.com/build/git-urls.git",
+        branchName: "master",
+        startLine: undefined,
+        endLine: undefined,
+        relativePath: "test space in path/a.md"
+    }
+    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+
+    expect(link).toBe("https://github.com/build/git-urls/blob/master/test%20space%20in%20path/a.md");
+});

@@ -26,7 +26,11 @@ export default class GitUrl {
 
         gitInfo.startLine = configInfo.startLine;
         gitInfo.endLine = configInfo.endLine;
-        gitInfo.relativefilePath = configInfo.relativePath;
+        if (configInfo.relativePath !== undefined) {
+            let parts = configInfo.relativePath.split('/');
+            parts = parts.map(p => encodeURIComponent(p));
+            gitInfo.relativefilePath = parts.join('/');
+        }
 
         return host.assemble(gitInfo);
     }
