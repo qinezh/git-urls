@@ -27,4 +27,3 @@
 
   build_script:
     - npm run build
-    - npm run test
