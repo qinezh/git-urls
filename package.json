@@ -37,18 +37,10 @@
   },
   "jest": {
     "moduleFileExtensions": [
-      "ts",
       "js"
     ],
-    "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
-    },
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/dist/"
-    ],
     "testMatch": [
-      "**/test/*.ts"
+      "**/test/*.js"
     ]
   }
 }
