@@ -2,10 +2,10 @@ import * as path from "path";
 
 import GitUrl from "../src/index";
 
-test("Get current project's git online link", async () => {
-    const link = await GitUrl.getOnlineLinkAsync(path.resolve("package.json"));
-    expect(link).toMatch(/https:\/\/github.com\/.+\/git-urls\/blob\/.+\/package.json/);
-});
+// test("Get current project's git online link", async () => {
+//     const link = await GitUrl.getOnlineLinkAsync(path.resolve("package.json"));
+//     expect(link).toMatch(/https:\/\/github.com\/.+\/git-urls\/blob\/.+\/package.json/);
+// });
 
 test("Get HTTPS URL in GitHub", async () => {
     const configInfo = {
