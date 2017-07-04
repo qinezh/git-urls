@@ -40,7 +40,7 @@
       "js"
     ],
     "testMatch": [
-      "**/test/*.js"
+      "<rootDir>/dist/test/*.test.js"
     ]
   }
 }
