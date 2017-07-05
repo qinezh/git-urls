@@ -8,6 +8,7 @@
       secure: CF0+NkSX0D4jrSH20ybWD6TXIiYK0X19r02p1u0NqZORVoCBVhmOCRVjc93Bd4DW
 
   before_build:
+    - ps: Install-Product node $env:nodejs_version
     - npm install
 
   build_script:
@@ -23,6 +24,7 @@
     nodejs_version: "6"
 
   before_build:
+    - ps: Install-Product node $env:nodejs_version
     - npm install
 
   build_script:
