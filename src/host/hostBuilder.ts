@@ -2,6 +2,7 @@ import Host from "./Host";
 import GitHub from "./github";
 import GitLab from "./gitlab";
 import BitBucket from "./bitbucket";
+import Vsts from './Vsts';
 import ConfigInfo from "../configInfo";
 
 export default class HostBuilder {
@@ -11,6 +12,8 @@ export default class HostBuilder {
             return new GitLab();
         } else if (url.indexOf("bitbucket") >= 0) {
             return new BitBucket();
+        } else if (Vsts.match(url)) {
+            return new Vsts();
         } else {
             return new GitHub();
         }
