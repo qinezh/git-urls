@@ -36,7 +36,8 @@
   "scripts": {
     "prepublish": "npm run build",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "ci-publish": "ci-publish"
   },
   "jest": {
     "moduleFileExtensions": [
