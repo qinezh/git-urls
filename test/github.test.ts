@@ -11,8 +11,6 @@ test("Get HTTPS URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://github.com/build/git-urls.git",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -24,8 +22,6 @@ test("Get SSH URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "git@github.com:qinezh/git-urls",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -37,8 +33,6 @@ test("Get HTTP URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "http://github.com/qinezh/git-urls.git",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -50,8 +44,6 @@ test("Get HTTPS URL with username in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -63,11 +55,26 @@ test("Get URL with space in file path in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test space in path/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test%20space%20in%20path/a.md");
+});
+
+test("Get URL with section in GitHub", async () => {
+    const configInfo = {
+        remoteUrl: "https://qinezh@github.com/build/git-urls.git",
+        branchName: "master",
+        section: {
+            startLine: 2,
+            endLine: 3,
+            startColumn: 4,
+            endColumn: 5
+        },
+        relativePath: "test space in path/a.md"
+    }
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+
+    expect(link).toBe("https://github.com/build/git-urls/blob/master/test%20space%20in%20path/a.md#L2-L3");
 });

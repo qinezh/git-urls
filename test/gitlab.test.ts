@@ -6,8 +6,6 @@ test("Get HTTPS url in GitLab", async () => {
     const configInfo = {
         remoteUrl: "https://gitlab.com/build/git-urls.git",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -19,8 +17,6 @@ test("Get SSH URL in GitLab", async () => {
     const configInfo = {
         remoteUrl: "git@gitlab.com:qinezh/git-urls",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);

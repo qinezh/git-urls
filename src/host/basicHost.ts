@@ -40,7 +40,7 @@ export default abstract class BasicHost implements Host {
         }
         const link = `${prefix}${this.hostname}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
 
-        if (info.section && info.section.startLine && info.section.endLine) {
+        if (info.section && info.section.startLine && info.section.endLine && info.section.startLine !== info.section.endLine) {
             return `${link}#L${info.section.startLine}-L${info.section.endLine}`;
         } else if (info.section && info.section.startLine) {
             return `${link}#L${info.section.startLine}`;
