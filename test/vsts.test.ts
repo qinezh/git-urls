@@ -1,13 +1,13 @@
 import * as path from "path";
 
+import ConfigInfo from "../src/configInfo";
+import Section from "../src/section";
 import GitUrls from "../src/index";
 
 test("Get file URL in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -19,8 +19,7 @@ test("Get selection block URL in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
         branchName: "master",
-        startLine: 12,
-        endLine: 23,
+        section: new Section(12, 23),
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -32,8 +31,6 @@ test("Get file URL in VSTS with SSH", async () => {
     const configInfo = {
         remoteUrl: "ssh://ssh@ssh.visualstudio.com:22/Collection/_git/repo",
         branchName: "master",
-        startLine: undefined,
-        endLine: undefined,
         relativePath: "test/file"
     };
 

@@ -2,6 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 
 import ConfigInfo from "./configInfo";
+import Section from "./section";
 import HostBuilder from "./host/hostBuilder";
 import Helper from "./helper";
 
@@ -14,8 +15,10 @@ export default class GitUrls {
 
         const configInfo = await Helper.parseConfigAsync(repoRoot);
         configInfo.relativePath = Helper.normarlize(path.relative(repoRoot, filePath));
-        configInfo.startLine = startLine;
-        configInfo.endLine = endLine;
+
+        if (startLine) {
+            configInfo.section = new Section(startLine, endLine);
+        }
 
         return this.getUrlsCoreAsync(configInfo);
     }
@@ -34,9 +37,11 @@ export default class GitUrls {
         const host = HostBuilder.create(configInfo);
         let gitInfo = host.parse(configInfo);
 
-        gitInfo.startLine = configInfo.startLine;
-        gitInfo.endLine = configInfo.endLine;
-        if (configInfo.relativePath !== undefined) {
+        if (configInfo.section) {
+            gitInfo.section = configInfo.section;
+        }
+
+        if (configInfo.relativePath) {
             let parts = configInfo.relativePath.split('/');
             parts = parts.map(p => encodeURIComponent(p));
             gitInfo.relativefilePath = parts.join('/');

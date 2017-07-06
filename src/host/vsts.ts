@@ -18,11 +18,7 @@ export default class Vsts implements Host {
         return {
             repoName: info.remoteUrl,
             branchName: info.branchName,
-            userName: '',
-            relativefilePath: undefined,
-            startLine: undefined,
-            endLine: undefined,
-            isHttp: true,
+            userName: ''
         }
     }
 
@@ -31,8 +27,8 @@ export default class Vsts implements Host {
         const path: string = encodeURIComponent(`/${info.relativefilePath}`);
         let url =  `${baseUrl}?path=${path}&version=GB${info.branchName}&_a=contents`;
 
-        if (info.startLine) {
-            url += `&lineStyle=plain&line=${info.startLine}&lineEnd=${info.endLine}`;
+        if (info.section && info.section.startLine && info.section.endLine) {
+            url += `&lineStyle=plain&line=${info.section.startLine}&lineEnd=${info.section.endLine}`;
         }
 
         return url;

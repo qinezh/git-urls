@@ -56,13 +56,7 @@ export default class Helper {
             throw new Error(`Can't get branch name from ${headPath}.`);
         }
 
-        return {
-            remoteUrl: url,
-            branchName: branch,
-            relativePath: undefined,
-            startLine: undefined,
-            endLine: undefined
-        };
+        return new ConfigInfo(url, branch);
     }
 
     private static parseRemoteUrl(content: string): string | null {

@@ -29,23 +29,23 @@ export default abstract class BasicHost implements Host {
             repoName: repoName,
             branchName: info.branchName,
             userName: matches[3],
-            relativefilePath: undefined,
-            startLine: undefined,
-            endLine: undefined,
-            isHttp: isHttp,
+            metadata: { "isHttp": isHttp },
         }
     }
 
     assemble(info: GitInfo): string {
-        const prefix = info.isHttp ? "http://" : "https://";
+        let prefix = "https://";
+        if (info.metadata && info.metadata["isHttp"]) {
+            prefix = "http://";
+        }
         const link = `${prefix}${this.hostname}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
 
-        if (!info.startLine || !info.endLine) {
-            return link;
-        } else if (!info.endLine) {
-            return `${link}#L${info.startLine}`;
+        if (info.section && info.section.startLine && info.section.endLine) {
+            return `${link}#L${info.section.startLine}-L${info.section.endLine}`;
+        } else if (info.section && info.section.startLine) {
+            return `${link}#L${info.section.startLine}`;
         } else {
-            return `${link}#L${info.startLine}-L${info.endLine}`;
+            return link;
         }
     }
 }

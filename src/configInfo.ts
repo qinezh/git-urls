@@ -1,9 +1,15 @@
-interface ConfigInfo {
-    remoteUrl: string,
-    branchName: string,
-    startLine: number | undefined,
-    endLine: number | undefined,
-    relativePath: string | undefined
-}
+import Section from "./section";
 
-export default ConfigInfo;
+export default class ConfigInfo {
+    remoteUrl: string;
+    branchName: string;
+    relativePath?: string;
+    section?: Section;
+
+    constructor(remoteUrl: string, branchName: string, relativePath?: string, section?: Section) {
+        this.remoteUrl = remoteUrl;
+        this.branchName = branchName;
+        this.relativePath = relativePath;
+        this.section = section;
+    }
+}
