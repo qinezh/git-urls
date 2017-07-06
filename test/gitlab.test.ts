@@ -1,6 +1,6 @@
 import * as path from "path";
 
-import GitUrl from "../src/index";
+import GitUrls from "../src/index";
 
 test("Get HTTPS url in GitLab", async () => {
     const configInfo = {
@@ -10,7 +10,7 @@ test("Get HTTPS url in GitLab", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.com/build/git-urls/blob/master/test/a.md");
 });
@@ -23,7 +23,7 @@ test("Get SSH URL in GitLab", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.com/qinezh/git-urls/blob/master/test/a.md");
 });

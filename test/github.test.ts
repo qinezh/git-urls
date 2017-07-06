@@ -1,6 +1,6 @@
 import * as path from "path";
 
-import GitUrl from "../src/index";
+import GitUrls from "../src/index";
 
 // test("Get current project's git online link", async () => {
 //     const link = await GitUrl.getOnlineLinkAsync(path.resolve("package.json"));
@@ -15,7 +15,7 @@ test("Get HTTPS URL in GitHub", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test/a.md");
 });
@@ -28,7 +28,7 @@ test("Get SSH URL in GitHub", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://github.com/qinezh/git-urls/blob/master/test/a.md");
 });
@@ -41,7 +41,7 @@ test("Get HTTP URL in GitHub", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("http://github.com/qinezh/git-urls/blob/master/test/a.md");
 });
@@ -54,7 +54,7 @@ test("Get HTTPS URL with username in GitHub", async () => {
         endLine: undefined,
         relativePath: "test/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test/a.md");
 });
@@ -67,7 +67,7 @@ test("Get URL with space in file path in GitHub", async () => {
         endLine: undefined,
         relativePath: "test space in path/a.md"
     }
-    const link = await GitUrl.getOnlineLinkCoreAsync(configInfo);
+    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test%20space%20in%20path/a.md");
 });

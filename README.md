@@ -1,6 +1,6 @@
 # git-urls
 
-Get online link of file with git remote URL(support Github, GitLab, Bitbucket)
+Get online link of file with git remote URL(support Github, GitLab, Bitbucket, VSTS)
 
 ## Install
 
@@ -11,10 +11,10 @@ npm install git-urls
 ## Usage example
 
 ```javascript
-import GitUrl from "git-urls";
+import GitUrls from "git-urls";
 
 const f = async () => {
-    return await GitUrl.getOnlineLinkAsync(__filename);
+    return await GitUrls.getUrlsAsync(__filename);
 };
 
 f().then(link => {

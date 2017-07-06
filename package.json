@@ -17,6 +17,9 @@
     "url": "https://github.com/qinezh/git-urls/issues"
   },
   "homepage": "https://github.com/qinezh/git-urls#readme",
+  "contributors": [
+    "Junle Li"
+  ],
   "dependencies": {
     "@types/fs-extra": "^3.0.2",
     "@types/node": "^7.0.22",
