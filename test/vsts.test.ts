@@ -1,7 +1,6 @@
 import * as path from "path";
 
 import ConfigInfo from "../src/configInfo";
-import Section from "../src/section";
 import GitUrls from "../src/index";
 
 test("Get file URL in VSTS", async () => {
@@ -19,7 +18,10 @@ test("Get selection block URL in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
         branchName: "master",
-        section: new Section(12, 23),
+        section: {
+            startLine: 12,
+            endLine: 23
+        },
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);
@@ -42,7 +44,12 @@ test("Get selection block URL with column in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
         branchName: "master",
-        section: new Section(12, 23, 8, 9),
+        section: {
+            startLine: 12,
+            endLine: 23,
+            startColumn: 8,
+            endColumn: 9
+        },
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlsCoreAsync"](configInfo);

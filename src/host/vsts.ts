@@ -25,13 +25,13 @@ export default class Vsts implements Host {
     public assemble(info: GitInfo): string {
         const baseUrl = info.repoName.replace(Vsts.urlRegex, "https://$1.visualstudio.com/$2/_git/$3");
         const path: string = encodeURIComponent(`/${info.relativefilePath}`);
-        let url =  `${baseUrl}?path=${path}&version=GB${info.branchName}&_a=contents`;
+        let url = `${baseUrl}?path=${path}&version=GB${info.branchName}&_a=contents`;
 
         if (info.section && info.section.startLine && info.section.endLine) {
             url += `&lineStyle=plain&line=${info.section.startLine}&lineEnd=${info.section.endLine}`;
 
-            if (info.section.lineStartColumn && info.section.lineEndColumn) {
-                url += `&lineStartColumn=${info.section.lineStartColumn}&lineEndColumn=${info.section.lineEndColumn}`;
+            if (info.section.startColumn && info.section.endColumn) {
+                url += `&lineStartColumn=${info.section.startColumn}&lineEndColumn=${info.section.endColumn}`;
             }
         }
 

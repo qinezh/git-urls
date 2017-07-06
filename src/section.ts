@@ -1,13 +1,13 @@
 export default class Section {
     startLine: number;
     endLine?: number;
-    lineStartColumn?: number;
-    lineEndColumn?: number;
+    startColumn?: number;
+    endColumn?: number;
 
     constructor(startLine: number, endLine?: number, startColumn?: number, endColumn?: number) {
         this.startLine = startLine;
         this.endLine = endLine;
-        this.lineStartColumn = startColumn;
-        this.lineEndColumn = endColumn;
+        this.startColumn = startColumn;
+        this.endColumn = endColumn;
     }
 }
