@@ -7,7 +7,7 @@ import HostBuilder from "./host/hostBuilder";
 import Helper from "./helper";
 
 export default class GitUrls {
-    public static async getUrlsAsync(filePath: string, startLine?: number, endLine?: number): Promise<string> {
+    public static async getUrlsAsync(filePath: string, section?: Section): Promise<string> {
         const repoRoot = Helper.getRepoRoot(filePath);
         if (!repoRoot) {
             throw new Error(`Can't find repo root for ${filePath}.`);
@@ -16,16 +16,16 @@ export default class GitUrls {
         const configInfo = await Helper.parseConfigAsync(repoRoot);
         configInfo.relativePath = Helper.normarlize(path.relative(repoRoot, filePath));
 
-        if (startLine) {
-            configInfo.section = new Section(startLine, endLine);
+        if (section) {
+            configInfo.section = section;
         }
 
         return this.getUrlsCoreAsync(configInfo);
     }
 
-    public static async tryUrlsAsync(filePath: string, startLine?: number, endLine?: number): Promise<string | null> {
+    public static async tryUrlsAsync(filePath: string, section?: Section): Promise<string | null> {
         try {
-            return this.getUrlsAsync(filePath, startLine, endLine);
+            return this.getUrlsAsync(filePath, section);
         } catch (err) {
             console.error(err);
         }
