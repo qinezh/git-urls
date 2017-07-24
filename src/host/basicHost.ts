@@ -4,8 +4,6 @@ import ConfigInfo from "../configInfo";
 
 export default abstract class BasicHost implements Host {
     private readonly regex = /(https?:\/\/|git@)([^\/:]+)(?:\/|:)([^\/:]+)(?:\/|:)([^\/:]+)/;
-
-    protected abstract hostname;
     protected abstract separateFolder;
 
     parse(info: ConfigInfo): GitInfo {
@@ -25,7 +23,14 @@ export default abstract class BasicHost implements Host {
             repoName = repoName.substring(0, repoName.lastIndexOf(".git"));
         }
 
+        let hostName = matches[2];
+        let index = hostName.indexOf('@');
+        if ( index !== -1) {
+            hostName = hostName.substring(index+1);
+        }
+
         return {
+            hostName: hostName,
             repoName: repoName,
             branchName: info.branchName,
             userName: matches[3],
@@ -38,7 +43,7 @@ export default abstract class BasicHost implements Host {
         if (info.metadata && info.metadata["isHttp"]) {
             prefix = "http://";
         }
-        const link = `${prefix}${this.hostname}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
+        const link = `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
 
         if (info.section && info.section.startLine && info.section.endLine && info.section.startLine !== info.section.endLine) {
             return `${link}#L${info.section.startLine}-L${info.section.endLine}`;
