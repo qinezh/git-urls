@@ -8,7 +8,7 @@ test("Get HTTPS url in GitLab", async () => {
         branchName: "master",
         relativePath: "test/a.md"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.com/build/git-urls/blob/master/test/a.md");
 });
@@ -19,7 +19,7 @@ test("Get SSH URL in GitLab", async () => {
         branchName: "master",
         relativePath: "test/a.md"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.com/qinezh/git-urls/blob/master/test/a.md");
 });
@@ -30,7 +30,7 @@ test("Get HTTPS url in GitLab with company name", async () => {
         branchName: "master",
         relativePath: "test/a.md"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.xyz.com/build/git-urls/blob/master/test/a.md");
 });
@@ -41,7 +41,7 @@ test("Get SSH URL in GitLab with company name", async () => {
         branchName: "master",
         relativePath: "test/a.md"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://gitlab.xyz.com/qinezh/git-urls/blob/master/test/a.md");
 });

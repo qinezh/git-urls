@@ -9,7 +9,7 @@ test("Get file URL in VSTS", async () => {
         branchName: "master",
         relativePath: "test/file"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents");
 });
@@ -24,7 +24,7 @@ test("Get selection block URL in VSTS", async () => {
         },
         relativePath: "test/file"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents&lineStyle=plain&line=12&lineEnd=23");
 });
@@ -36,7 +36,7 @@ test("Get file URL in VSTS with SSH", async () => {
         relativePath: "test/file"
     };
 
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
     expect(link).toBe("https://ssh.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents");
 });
 
@@ -52,7 +52,7 @@ test("Get selection block URL with column in VSTS", async () => {
         },
         relativePath: "test/file"
     }
-    const link = await GitUrls["getUrlsCoreAsync"](configInfo);
+    const link = await GitUrls["getUrlAsync"](configInfo);
 
     expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents&lineStyle=plain&line=12&lineEnd=23&lineStartColumn=8&lineEndColumn=9");
 });
