@@ -17,7 +17,9 @@ const f = async () => {
     return await GitUrls.getUrlsAsync(__filename);
 };
 
-f().then(link => {
-    console.log(link);
+f().then(linkMap => {
+    for (const [remoteName, link] of linkMap) {
+        console.log(`${remoteName}: ${link}`);
+    }
 });
 ```
