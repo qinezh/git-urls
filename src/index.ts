@@ -7,33 +7,30 @@ import HostBuilder from "./host/hostBuilder";
 import Helper from "./helper";
 
 export default class GitUrls {
-    public static async getUrlsAsync(filePath: string, section?: Section): Promise<string> {
+    public static async getUrlsAsync(filePath: string, section?: Section): Promise<Map<string, string>> {
         const repoRoot = Helper.getRepoRoot(filePath);
         if (!repoRoot) {
             throw new Error(`Can't find repo root for ${filePath}.`);
         }
 
-        const configInfo = await Helper.parseConfigAsync(repoRoot);
-        configInfo.relativePath = Helper.normarlize(path.relative(repoRoot, filePath));
+        const configMap = await Helper.parseConfigAsync(repoRoot);
+        let urlsMap = new Map<string, string>();
 
-        if (section) {
-            configInfo.section = section;
+        for (let [key, configInfo] of configMap) {
+            configInfo.relativePath = Helper.normarlize(path.relative(repoRoot, filePath));
+
+            if (section) {
+                configInfo.section = section;
+            }
+
+            const url = await this.getUrlAsync(configInfo);
+            urlsMap.set(key, url);
         }
 
-        return this.getUrlsCoreAsync(configInfo);
+        return urlsMap;
     }
 
-    public static async tryUrlsAsync(filePath: string, section?: Section): Promise<string | null> {
-        try {
-            return this.getUrlsAsync(filePath, section);
-        } catch (err) {
-            console.error(err);
-        }
-
-        return null;
-    }
-
-    private static async getUrlsCoreAsync(configInfo: ConfigInfo): Promise<string> {
+    private static async getUrlAsync(configInfo: ConfigInfo): Promise<string> {
         const host = HostBuilder.create(configInfo);
         let gitInfo = host.parse(configInfo);
 

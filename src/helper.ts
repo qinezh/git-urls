@@ -4,9 +4,37 @@ import * as path from "path";
 import ConfigInfo from "./configInfo";
 
 export default class Helper {
-    public static async parseConfigAsync(repoRoot: string): Promise<ConfigInfo> {
-        const info = await this.parseConfigCoreAsync(repoRoot);
-        return info;
+    public static async parseConfigAsync(repoRoot: string): Promise<Map<string, ConfigInfo>> {
+        const configPath = path.join(repoRoot, ".git/config");
+        const headPath = path.join(repoRoot, ".git/HEAD");
+
+        const existConfig = await fs.exists(configPath);
+        const existHead = await fs.exists(headPath);
+
+        if (!existConfig || !existHead) {
+            throw new Error(`No git config files found in ${repoRoot}.`);
+        }
+
+        const configContent = await fs.readFile(configPath, "utf8");
+        const headContent = await fs.readFile(headPath, "utf8");
+
+        const remoteMap = this.parseRemoteUrl(configContent);
+        const branch = this.parseBranchName(headContent);
+
+        if (!remoteMap) {
+            throw new Error(`Can't get remote name/url from ${configPath}.`);
+        }
+
+        if (!branch) {
+            throw new Error(`Can't get branch name from ${headPath}.`);
+        }
+
+        var configMap = new Map<string, ConfigInfo>();
+        for (let [key, value] of remoteMap) {
+            configMap.set(key, new ConfigInfo(value, branch))
+        }
+
+        return configMap;
     }
 
     public static getRepoRoot(filePath: string): string | null {
@@ -31,42 +59,25 @@ export default class Helper {
         return filePath.replace(/\\/g, '/');
     }
 
-    private static async parseConfigCoreAsync(repoRoot: string): Promise<ConfigInfo> {
-        const configPath = path.join(repoRoot, ".git/config");
-        const headPath = path.join(repoRoot, ".git/HEAD");
+    private static parseRemoteUrl(content: string): Map<string, string> | null {
+        const regex = /\n\[remote \"(.+)\"\]\s+url\s*=\s*(.+)\n/gi;
+        let result = new Map<string, string>();
 
-        const existConfig = await fs.exists(configPath);
-        const existHead = await fs.exists(headPath);
+        let matches = regex.exec(content);
+        while (matches !== null) {
+            if (matches.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
 
-        if (!existConfig || !existHead) {
-            throw new Error(`No git config files found in ${repoRoot}.`);
+            result.set(matches[1], matches[2]);
+            matches = regex.exec(content);
         }
 
-        const configContent = await fs.readFile(configPath, "utf8");
-        const headContent = await fs.readFile(headPath, "utf8");
-
-        const url = this.parseRemoteUrl(configContent);
-        const branch = this.parseBranchName(headContent);
-
-        if (!url) {
-            throw new Error(`Can't get remote url from ${configPath}.`);
+        if (result.size > 0) {
+            return result;
         }
 
-        if (!branch) {
-            throw new Error(`Can't get branch name from ${headPath}.`);
-        }
-
-        return new ConfigInfo(url, branch);
-    }
-
-    private static parseRemoteUrl(content: string): string | null {
-        const regex = /\n\[remote \"origin\"\]\s+url\s*=\s*(.+)\n/;
-        const matches = regex.exec(content);
-        if (!matches) {
-            return null;
-        }
-
-        return matches[1];
+        return null;
     }
 
     private static parseBranchName(content: string): string | null {
