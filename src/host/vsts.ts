@@ -6,9 +6,9 @@ export default class Vsts implements Host {
     /**
      * The regular expression to match the VSTS Git URL.
      * @example https://my-tenant.visualstudio.com/DefaultCollection/MyCollection/_git/my-repo
-     * @example ssh://my-tenant@my-tenant.visualstudio.com:22/DefaultCollection/MyCollection/_git/my-repo
+     * @example ssh://my-tenant@my-tenant.visualstudio.com:22/DefaultCollection/MyCollection/_ssh/my-repo
      */
-    private static urlRegex: RegExp = /(?:https:\/\/|ssh:\/\/.+@)(.+)\.visualstudio\.com(?:\:\d+)?\/(.+)\/_git\/([^/]+)/i;
+    private static urlRegex: RegExp = /(?:https:\/\/|ssh:\/\/)([\w-]+)@?.*\.visualstudio\.com(?:\:\d+)?\/(.+)\/(?:_git|_ssh)\/([^/]+)/i;
 
     public static match(url: string): boolean {
         return Vsts.urlRegex.test(url);

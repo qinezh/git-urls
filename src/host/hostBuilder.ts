@@ -2,11 +2,11 @@ import Host from "./Host";
 import GitHub from "./github";
 import GitLab from "./gitlab";
 import BitBucket from "./bitbucket";
-import Vsts from './Vsts';
+import Vsts from './vsts';
 import ConfigInfo from "../configInfo";
 
 export default class HostBuilder {
-    static create(info: ConfigInfo): Host{
+    static create(info: ConfigInfo): Host {
         const url = info.remoteUrl;
         if (url.indexOf("gitlab") >= 0) {
             return new GitLab();

@@ -31,13 +31,13 @@ test("Get selection block URL in VSTS", async () => {
 
 test("Get file URL in VSTS with SSH", async () => {
     const configInfo = {
-        remoteUrl: "ssh://ssh@ssh.visualstudio.com:22/Collection/_git/repo",
+        remoteUrl: "ssh://my-tenant@vs-ssh.visualstudio.com:22/Collection/_ssh/repo",
         branchName: "master",
         relativePath: "test/file"
     };
 
     const link = await GitUrls["getUrlAsync"](configInfo);
-    expect(link).toBe("https://ssh.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents");
+    expect(link).toBe("https://my-tenant.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents");
 });
 
 test("Get selection block URL with column in VSTS", async () => {
