@@ -1,3 +1,5 @@
+[![npm](https://img.shields.io/npm/dt/git-urls.svg)](https://www.npmjs.com/package/git-urls)
+
 # git-urls
 
 Get online link of file with git remote URL(support Github, GitLab, Bitbucket, VSTS)
