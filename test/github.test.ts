@@ -78,3 +78,13 @@ test("Get URL with section in GitHub", async () => {
 
     expect(link).toBe("https://github.com/build/git-urls/blob/master/test%20space%20in%20path/a.md#L2-L3");
 });
+
+test("Get URL with specical branch in GitHub", async () => {
+    const configInfo = {
+        remoteUrl: "https://qinezh@github.com/build/git-urls.git",
+        branchName: "#test",
+        relativePath: "a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+    expect(link).toBe("https://github.com/build/git-urls/blob/%23test/a.md");
+});

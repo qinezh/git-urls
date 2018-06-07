@@ -44,6 +44,10 @@ export default class GitUrls {
             gitInfo.relativefilePath = parts.join('/');
         }
 
+        if (configInfo.branchName) {
+            gitInfo.branchName = encodeURIComponent(configInfo.branchName);
+        }
+
         return host.assemble(gitInfo);
     }
 }
