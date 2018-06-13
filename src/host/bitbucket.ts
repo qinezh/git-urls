@@ -7,12 +7,8 @@ export default class BitBucket extends BasicHost {
     protected separateFolder = "src";
 
     assemble(info: GitInfo): string {
-        let prefix = "https://";
-        if (info.metadata && info.metadata["isHttp"]) {
-            prefix = "http://";
-        }
-        const link = `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
-
+        const link = this.assembleLink(info);
+        
         let fileName: string|null = null;
         if (info.relativefilePath) {
             fileName = path.basename(info.relativefilePath);

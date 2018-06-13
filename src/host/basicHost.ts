@@ -25,8 +25,8 @@ export default abstract class BasicHost implements Host {
 
         let hostName = matches[2];
         let index = hostName.indexOf('@');
-        if ( index !== -1) {
-            hostName = hostName.substring(index+1);
+        if (index !== -1) {
+            hostName = hostName.substring(index + 1);
         }
 
         return {
@@ -39,18 +39,15 @@ export default abstract class BasicHost implements Host {
     }
 
     assemble(info: GitInfo): string {
+        return this.assembleLink(info);
+    }
+
+    assembleLink(info: GitInfo): string {
         let prefix = "https://";
         if (info.metadata && info.metadata["isHttp"]) {
             prefix = "http://";
         }
-        const link = `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`
 
-        if (info.section && info.section.startLine && info.section.endLine && info.section.startLine !== info.section.endLine) {
-            return `${link}#L${info.section.startLine}-L${info.section.endLine}`;
-        } else if (info.section && info.section.startLine) {
-            return `${link}#L${info.section.startLine}`;
-        } else {
-            return link;
-        }
+        return `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`;
     }
 }
