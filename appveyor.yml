@@ -5,7 +5,7 @@
   environment:
     nodejs_version: "6"
     NPM_TOKEN:
-      secure: CF0+NkSX0D4jrSH20ybWD6TXIiYK0X19r02p1u0NqZORVoCBVhmOCRVjc93Bd4DW
+      secure: mnzQMx2AChA/e1ZJTd590T7+RVOGXDVkeA73TMRFMc5+kAjwbzLTZNz8PpDFbPpo
 
   before_build:
     - ps: Install-Product node $env:nodejs_version
