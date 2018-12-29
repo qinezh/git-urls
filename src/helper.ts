@@ -8,8 +8,8 @@ export default class Helper {
         const configPath = path.join(repoRoot, ".git/config");
         const headPath = path.join(repoRoot, ".git/HEAD");
 
-        const existConfig = await fs.exists(configPath);
-        const existHead = await fs.exists(headPath);
+        const existConfig = await fs.pathExists(configPath);
+        const existHead = await fs.pathExists(headPath);
 
         if (!existConfig || !existHead) {
             throw new Error(`No git config files found in ${repoRoot}.`);
