@@ -26,7 +26,7 @@ test("Get selection block URL in VSTS", async () => {
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
 
-    expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents&lineStyle=plain&line=12&lineEnd=23");
+    expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents&lineStyle=plain&line=12&lineEnd=23&lineStartColumn=1&lineEndColumn=1");
 });
 
 test("Get file URL in VSTS with SSH", async () => {

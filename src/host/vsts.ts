@@ -32,6 +32,8 @@ export default class Vsts implements Host {
 
             if (info.section.startColumn && info.section.endColumn) {
                 url += `&lineStartColumn=${info.section.startColumn}&lineEndColumn=${info.section.endColumn}`;
+            } else {
+                url += "&lineStartColumn=1&lineEndColumn=1";
             }
         }
 
