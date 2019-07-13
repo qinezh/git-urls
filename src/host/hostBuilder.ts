@@ -3,6 +3,7 @@ import GitHub from "./github";
 import GitLab from "./gitlab";
 import BitBucket from "./bitbucket";
 import Vsts from './vsts';
+import DevOps from './devops';
 import ConfigInfo from "../configInfo";
 
 export default class HostBuilder {
@@ -14,6 +15,8 @@ export default class HostBuilder {
             return new BitBucket();
         } else if (Vsts.match(url)) {
             return new Vsts();
+        } else if (DevOps.match(url)) {
+            return new DevOps();
         } else {
             return new GitHub();
         }

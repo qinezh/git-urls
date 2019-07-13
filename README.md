@@ -3,7 +3,7 @@
 
 # git-urls
 
-Get online link of file with git remote URL(support Github, GitLab, Bitbucket, VSTS)
+Get online link of file with git remote URL(support Github, GitLab, Bitbucket, VSTS, DevOps)
 
 ## Install
 
