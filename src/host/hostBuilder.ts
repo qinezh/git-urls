@@ -1,4 +1,4 @@
-import Host from "./Host";
+import Host from "./host";
 import GitHub from "./github";
 import GitLab from "./gitlab";
 import BitBucket from "./bitbucket";
