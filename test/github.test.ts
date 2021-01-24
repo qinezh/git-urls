@@ -88,3 +88,14 @@ test("Get URL with specical branch in GitHub", async () => {
     const link = await GitUrls["getUrlAsync"](configInfo);
     expect(link).toBe("https://github.com/build/git-urls/blob/%23test/a.md");
 });
+
+test("Get URL with commit SHA in GitHub", async () => {
+    const configInfo = {
+        remoteUrl: "https://github.com/build/git-urls.git",
+        commit: "59f76230dd5829a10aab717265b66c6b5849365e",
+        relativePath: "test/a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+
+    expect(link).toBe("https://github.com/build/git-urls/blob/59f76230dd5829a10aab717265b66c6b5849365e/test/a.md");
+});

@@ -29,3 +29,14 @@ test("Get SSH URL in BitBucket", async () => {
 
     expect(link).toBe("https://bitbucket.org/qinezh/git-urls/src/master/test/a.md#a.md-2:3");
 });
+
+test("Get URL with commit SHA in BitBucket", async () => {
+    const configInfo = {
+        remoteUrl: "https://bitbucket.org/qinezh/git-urls.git",
+        commit: "59f76230dd5829a10aab717265b66c6b5849365e",
+        relativePath: "test/a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+
+    expect(link).toBe("https://bitbucket.org/qinezh/git-urls/src/59f76230dd5829a10aab717265b66c6b5849365e/test/a.md");
+});

@@ -56,3 +56,14 @@ test("Get selection block URL with column in VSTS", async () => {
 
     expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GBmaster&_a=contents&lineStyle=plain&line=12&lineEnd=23&lineStartColumn=8&lineEndColumn=9");
 });
+
+test("Get URL with commit SHA in VSTS", async () => {
+    const configInfo = {
+        remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
+        commit: "59f76230dd5829a10aab717265b66c6b5849365e",
+        relativePath: "test/file"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+
+    expect(link).toBe("https://vsts.visualstudio.com/Collection/_git/repo?path=%2Ftest%2Ffile&version=GC59f76230dd5829a10aab717265b66c6b5849365e&_a=contents");
+});

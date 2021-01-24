@@ -62,3 +62,14 @@ test("Get URL with section in GitLab", async () => {
 
     expect(link).toBe("https://gitlab.com/build/git-urls/blob/master/a.md#L2-3");
 });
+
+test("Get URL with commit SHA in GitLab", async () => {
+    const configInfo = {
+        remoteUrl: "https://gitlab.com/build/git-urls.git",
+        commit: "59f76230dd5829a10aab717265b66c6b5849365e",
+        relativePath: "test/a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+
+    expect(link).toBe("https://gitlab.com/build/git-urls/blob/59f76230dd5829a10aab717265b66c6b5849365e/test/a.md");
+});
