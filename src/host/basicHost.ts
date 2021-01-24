@@ -48,6 +48,6 @@ export default abstract class BasicHost implements Host {
             prefix = "http://";
         }
 
-        return `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.commit}/${info.relativefilePath}`;
+        return `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.ref.value}/${info.relativefilePath}`;
     }
 }
