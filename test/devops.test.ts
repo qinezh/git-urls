@@ -6,7 +6,7 @@ import GitUrls from "../src/index";
 test("Get file URL in DevOps", async () => {
     const configInfo = {
         remoteUrl: "https://dev.azure.com/my-org/my-project/_git/repo",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -17,7 +17,7 @@ test("Get file URL in DevOps", async () => {
 test("Get selection block URL in DevOps", async () => {
     const configInfo = {
         remoteUrl: "https://dev.azure.com/my-org/my-project/_git/repo",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 12,
             endLine: 23
@@ -32,7 +32,7 @@ test("Get selection block URL in DevOps", async () => {
 test("Get file URL in DevOps with SSH", async () => {
     const configInfo = {
         remoteUrl: "my-tenant@ssh.dev.azure.com:22/my-org/my-project/repo",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/file"
     };
 
@@ -43,7 +43,7 @@ test("Get file URL in DevOps with SSH", async () => {
 test("Get selection block URL with column in DevOps", async () => {
     const configInfo = {
         remoteUrl: "https://dev.azure.com/my-org/my-project/_git/repo",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 12,
             endLine: 23,

@@ -5,7 +5,7 @@ import GitUrls from "../src/index";
 test("Get HTTPS url in BitBucket", async () => {
     const configInfo = {
         remoteUrl: "https://bitbucket.org/qinezh/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -16,7 +16,7 @@ test("Get HTTPS url in BitBucket", async () => {
 test("Get SSH URL in BitBucket", async () => {
     const configInfo = {
         remoteUrl: "git@bitbucket.org:qinezh/git-urls.git",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 2,
             endLine: 3,

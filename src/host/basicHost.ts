@@ -32,7 +32,7 @@ export default abstract class BasicHost implements Host {
         return {
             hostName: hostName,
             repoName: repoName,
-            branchName: info.branchName,
+            commit: info.commit,
             userName: matches[3],
             metadata: { "isHttp": isHttp },
         }
@@ -48,6 +48,6 @@ export default abstract class BasicHost implements Host {
             prefix = "http://";
         }
 
-        return `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.branchName}/${info.relativefilePath}`;
+        return `${prefix}${info.hostName}/${info.userName}/${info.repoName}/${this.separateFolder}/${info.commit}/${info.relativefilePath}`;
     }
 }

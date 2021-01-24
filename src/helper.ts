@@ -19,7 +19,7 @@ export default class Helper {
         const headContent = await fs.readFile(headPath, "utf8");
 
         const remoteMap = this.parseRemoteUrl(configContent);
-        const branch = this.parseBranchName(headContent);
+        const branch = this.parsecommit(headContent);
 
         if (!remoteMap) {
             throw new Error(`Can't get remote name/url from ${configPath}.`);
@@ -80,7 +80,7 @@ export default class Helper {
         return null;
     }
 
-    private static parseBranchName(content: string): string | null {
+    private static parsecommit(content: string): string | null {
         const regex = /ref:\s+refs\/heads\/(\S+)/;
         const matches = regex.exec(content);
         if (!matches) {

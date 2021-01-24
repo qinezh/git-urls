@@ -6,7 +6,7 @@ import GitUrls from "../src/index";
 test("Get file URL in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/file"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -17,7 +17,7 @@ test("Get file URL in VSTS", async () => {
 test("Get selection block URL in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 12,
             endLine: 23
@@ -32,7 +32,7 @@ test("Get selection block URL in VSTS", async () => {
 test("Get file URL in VSTS with SSH", async () => {
     const configInfo = {
         remoteUrl: "ssh://my-tenant@vs-ssh.visualstudio.com:22/Collection/_ssh/repo",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/file"
     };
 
@@ -43,7 +43,7 @@ test("Get file URL in VSTS with SSH", async () => {
 test("Get selection block URL with column in VSTS", async () => {
     const configInfo = {
         remoteUrl: "https://vsts.visualstudio.com/Collection/_git/repo",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 12,
             endLine: 23,

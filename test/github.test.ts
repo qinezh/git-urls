@@ -10,7 +10,7 @@ import GitUrls from "../src/index";
 test("Get HTTPS URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://github.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -21,7 +21,7 @@ test("Get HTTPS URL in GitHub", async () => {
 test("Get SSH URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "git@github.com:qinezh/git-urls",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -32,7 +32,7 @@ test("Get SSH URL in GitHub", async () => {
 test("Get HTTP URL in GitHub", async () => {
     const configInfo = {
         remoteUrl: "http://github.com/qinezh/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -43,7 +43,7 @@ test("Get HTTP URL in GitHub", async () => {
 test("Get HTTPS URL with username in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -54,7 +54,7 @@ test("Get HTTPS URL with username in GitHub", async () => {
 test("Get URL with space in file path in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test space in path/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -65,7 +65,7 @@ test("Get URL with space in file path in GitHub", async () => {
 test("Get URL with section in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 2,
             endLine: 3,
@@ -82,7 +82,7 @@ test("Get URL with section in GitHub", async () => {
 test("Get URL with specical branch in GitHub", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "#test",
+        commit: "#test",
         relativePath: "a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);

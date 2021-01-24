@@ -5,7 +5,7 @@ import GitUrls from "../src/index";
 test("Get HTTPS url in GitLab", async () => {
     const configInfo = {
         remoteUrl: "https://gitlab.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -16,7 +16,7 @@ test("Get HTTPS url in GitLab", async () => {
 test("Get SSH URL in GitLab", async () => {
     const configInfo = {
         remoteUrl: "git@gitlab.com:qinezh/git-urls",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -27,7 +27,7 @@ test("Get SSH URL in GitLab", async () => {
 test("Get HTTPS url in GitLab with company name", async () => {
     const configInfo = {
         remoteUrl: "https://gitlab.xyz.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -38,7 +38,7 @@ test("Get HTTPS url in GitLab with company name", async () => {
 test("Get SSH URL in GitLab with company name", async () => {
     const configInfo = {
         remoteUrl: "git@gitlab.xyz.com:qinezh/git-urls",
-        branchName: "master",
+        commit: "master",
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -49,7 +49,7 @@ test("Get SSH URL in GitLab with company name", async () => {
 test("Get URL with section in GitLab", async () => {
     const configInfo = {
         remoteUrl: "https://qinezh@gitlab.com/build/git-urls.git",
-        branchName: "master",
+        commit: "master",
         section: {
             startLine: 2,
             endLine: 3,
