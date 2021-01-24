@@ -1,11 +1,12 @@
 import * as path from "path";
+import ConfigInfo from "../src/configInfo";
 
 import GitUrls from "../src/index";
 
 test("Get HTTPS url in BitBucket", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://bitbucket.org/qinezh/git-urls.git",
-        commit: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -14,9 +15,9 @@ test("Get HTTPS url in BitBucket", async () => {
 });
 
 test("Get SSH URL in BitBucket", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "git@bitbucket.org:qinezh/git-urls.git",
-        commit: "master",
+        ref: { type: "branch", value: "master" },
         section: {
             startLine: 2,
             endLine: 3,
@@ -31,9 +32,9 @@ test("Get SSH URL in BitBucket", async () => {
 });
 
 test("Get URL with commit SHA in BitBucket", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://bitbucket.org/qinezh/git-urls.git",
-        commit: "59f76230dd5829a10aab717265b66c6b5849365e",
+        ref: { type: "commit", value: "59f76230dd5829a10aab717265b66c6b5849365e"},
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);

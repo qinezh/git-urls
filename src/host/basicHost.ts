@@ -32,7 +32,7 @@ export default abstract class BasicHost implements Host {
         return {
             hostName: hostName,
             repoName: repoName,
-            commit: info.commit,
+            ref: info.ref,
             userName: matches[3],
             metadata: { "isHttp": isHttp },
         }

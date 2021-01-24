@@ -17,7 +17,7 @@ export default class Vsts implements Host {
     public parse(info: ConfigInfo): GitInfo {
         return {
             repoName: info.remoteUrl,
-            commit: info.commit,
+            ref: info.ref,
             userName: ''
         }
     }
