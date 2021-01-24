@@ -1,5 +1,4 @@
 import ConfigInfo from "../src/configInfo";
-
 import GitUrls from "../src/index";
 
 // test("Get current project's git online link", async () => {

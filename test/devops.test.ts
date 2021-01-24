@@ -1,5 +1,3 @@
-import * as path from "path";
-
 import ConfigInfo from "../src/configInfo";
 import GitUrls from "../src/index";
 
