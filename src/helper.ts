@@ -84,6 +84,6 @@ export default class Helper {
             return { type: "branch", value: branchMatches[1] }
         }
 
-        return { type: "commit", value: content };
+        return { type: "commit", value: content.trim() };
     }
 }
