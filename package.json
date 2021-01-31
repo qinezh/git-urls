@@ -1,6 +1,6 @@
 {
   "name": "git-urls",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Get online URL of file(Github, GitLab, Bitbucket...)",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
@@ -19,7 +19,8 @@
   "homepage": "https://github.com/qinezh/git-urls#readme",
   "contributors": [
     "Junle Li",
-    "Scott Bonebrake"
+    "Scott Bonebrake",
+    "Tyler Kindy"
   ],
   "dependencies": {
     "fs-extra": "^7.0.1"
