@@ -1,14 +1,15 @@
+import Ref from "./ref";
 import Section from "./section";
 
 export default class ConfigInfo {
     remoteUrl: string;
-    branchName: string;
+    ref: Ref;
     relativePath?: string;
     section?: Section;
 
-    constructor(remoteUrl: string, branchName: string, relativePath?: string, section?: Section) {
+    constructor(remoteUrl: string, ref: Ref, relativePath?: string, section?: Section) {
         this.remoteUrl = remoteUrl;
-        this.branchName = branchName;
+        this.ref = ref;
         this.relativePath = relativePath;
         this.section = section;
     }

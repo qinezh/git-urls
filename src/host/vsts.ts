@@ -17,7 +17,7 @@ export default class Vsts implements Host {
     public parse(info: ConfigInfo): GitInfo {
         return {
             repoName: info.remoteUrl,
-            branchName: info.branchName,
+            ref: info.ref,
             userName: ''
         }
     }
@@ -25,7 +25,18 @@ export default class Vsts implements Host {
     public assemble(info: GitInfo): string {
         const baseUrl = info.repoName.replace(Vsts.urlRegex, "https://$1.visualstudio.com/$2/_git/$3");
         const path: string = encodeURIComponent(`/${info.relativefilePath}`);
-        let url = `${baseUrl}?path=${path}&version=GB${info.branchName}&_a=contents`;
+
+        let version: string;
+        switch (info.ref.type) {
+            case "branch":
+                version = `GB${info.ref.value}`
+                break;
+            case "commit":
+                version = `GC${info.ref.value}`
+                break;
+        }
+
+        let url = `${baseUrl}?path=${path}&version=${version}&_a=contents`;
 
         if (info.section && info.section.startLine && info.section.endLine) {
             url += `&lineStyle=plain&line=${info.section.startLine}&lineEnd=${info.section.endLine}`;

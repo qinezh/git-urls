@@ -2,6 +2,7 @@ import * as fs from "fs-extra";
 import * as path from "path";
 
 import ConfigInfo from "./configInfo";
+import Ref from "./ref";
 
 export default class Helper {
     public static async parseConfigAsync(repoRoot: string): Promise<Map<string, ConfigInfo>> {
@@ -19,19 +20,15 @@ export default class Helper {
         const headContent = await fs.readFile(headPath, "utf8");
 
         const remoteMap = this.parseRemoteUrl(configContent);
-        const branch = this.parseBranchName(headContent);
+        const ref = this.parseRef(headContent);
 
         if (!remoteMap) {
             throw new Error(`Can't get remote name/url from ${configPath}.`);
         }
 
-        if (!branch) {
-            throw new Error(`Can't get branch name from ${headPath}.`);
-        }
-
         var configMap = new Map<string, ConfigInfo>();
         for (let [key, value] of remoteMap) {
-            configMap.set(key, new ConfigInfo(value, branch))
+            configMap.set(key, new ConfigInfo(value, ref))
         }
 
         return configMap;
@@ -80,13 +77,13 @@ export default class Helper {
         return null;
     }
 
-    private static parseBranchName(content: string): string | null {
-        const regex = /ref:\s+refs\/heads\/(\S+)/;
-        const matches = regex.exec(content);
-        if (!matches) {
-            return null;
+    private static parseRef(content: string): Ref {
+        const branchRegex = /ref:\s+refs\/heads\/(\S+)/;
+        const branchMatches = branchRegex.exec(content);
+        if (branchMatches) {
+            return { type: "branch", value: branchMatches[1] }
         }
 
-        return matches[1];
+        return { type: "commit", value: content };
     }
 }

@@ -1,5 +1,4 @@
-import * as path from "path";
-
+import ConfigInfo from "../src/configInfo";
 import GitUrls from "../src/index";
 
 // test("Get current project's git online link", async () => {
@@ -8,9 +7,9 @@ import GitUrls from "../src/index";
 // });
 
 test("Get HTTPS URL in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://github.com/build/git-urls.git",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -19,9 +18,9 @@ test("Get HTTPS URL in GitHub", async () => {
 });
 
 test("Get SSH URL in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "git@github.com:qinezh/git-urls",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -30,9 +29,9 @@ test("Get SSH URL in GitHub", async () => {
 });
 
 test("Get HTTP URL in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "http://github.com/qinezh/git-urls.git",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -41,9 +40,9 @@ test("Get HTTP URL in GitHub", async () => {
 });
 
 test("Get HTTPS URL with username in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -52,9 +51,9 @@ test("Get HTTPS URL with username in GitHub", async () => {
 });
 
 test("Get URL with space in file path in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         relativePath: "test space in path/a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
@@ -63,9 +62,9 @@ test("Get URL with space in file path in GitHub", async () => {
 });
 
 test("Get URL with section in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "master",
+        ref: { type: "branch", value: "master" },
         section: {
             startLine: 2,
             endLine: 3,
@@ -80,11 +79,22 @@ test("Get URL with section in GitHub", async () => {
 });
 
 test("Get URL with specical branch in GitHub", async () => {
-    const configInfo = {
+    const configInfo: ConfigInfo = {
         remoteUrl: "https://qinezh@github.com/build/git-urls.git",
-        branchName: "#test",
+        ref: { type: "branch", value: "#test" },
         relativePath: "a.md"
     }
     const link = await GitUrls["getUrlAsync"](configInfo);
     expect(link).toBe("https://github.com/build/git-urls/blob/%23test/a.md");
+});
+
+test("Get URL with commit SHA in GitHub", async () => {
+    const configInfo: ConfigInfo = {
+        remoteUrl: "https://github.com/build/git-urls.git",
+        ref: { type: "commit", value: "59f76230dd5829a10aab717265b66c6b5849365e" },
+        relativePath: "test/a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+
+    expect(link).toBe("https://github.com/build/git-urls/blob/59f76230dd5829a10aab717265b66c6b5849365e/test/a.md");
 });
