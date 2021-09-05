@@ -29,9 +29,9 @@
     "@types/fs-extra": "^5.1.0",
     "@types/jest": "^19.2.3",
     "@types/node": "^7.10.9",
-    "jest": "^24.9.0",
-    "jest-cli": "^24.9.0",
-    "ts-jest": "^24.3.0",
+    "jest": "^27.1.0",
+    "jest-cli": "^27.1.0",
+    "ts-jest": "^27.0.5",
     "typescript": "^3.7.5"
   },
   "scripts": {
