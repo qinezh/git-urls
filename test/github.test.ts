@@ -98,3 +98,13 @@ test("Get URL with commit SHA in GitHub", async () => {
 
     expect(link).toBe("https://github.com/build/git-urls/blob/59f76230dd5829a10aab717265b66c6b5849365e/test/a.md");
 });
+
+test("Get URL with basic auth", async () => {
+    const configInfo: ConfigInfo = {
+        remoteUrl: "https://username:ghp_REDACTED@github.com/build/git-urls.git",
+        ref: { type: "branch", value: "main" },
+        relativePath: "a.md"
+    }
+    const link = await GitUrls["getUrlAsync"](configInfo);
+    expect(link).toBe("https://github.com/build/git-urls/blob/main/a.md");
+});

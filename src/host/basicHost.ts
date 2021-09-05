@@ -3,11 +3,12 @@ import GitInfo from "../gitInfo";
 import ConfigInfo from "../configInfo";
 
 export default abstract class BasicHost implements Host {
-    private readonly regex = /(https?:\/\/|git@)([^\/:]+)(?:\/|:)([^\/:]+)(?:\/|:)([^\/:]+)/;
+    private readonly httpRegex = /(https?:\/\/)(?:[^:@]+:[^:@]+@)?([^\/:]+)(?:\/)([^\/:]+)(?:\/)([^\/:\n]+)/;
+    private readonly gitRegex = /(git@)([^\/:]+)(?::)([^\/:]+)(?:\/)([^\/:\n]+)/;
     protected abstract separateFolder;
 
     parse(info: ConfigInfo): GitInfo {
-        const matches = this.regex.exec(info.remoteUrl);
+        const matches = this.httpRegex.exec(info.remoteUrl) ?? this.gitRegex.exec(info.remoteUrl);
         if (!matches) {
             throw new Error(`Can't parse ${info.remoteUrl} with Default rules`);
         }
