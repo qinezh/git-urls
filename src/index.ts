@@ -23,6 +23,10 @@ export default class GitUrls {
                 configInfo.section = section;
             }
 
+            if (/(https?:\/\/)heroku.com\//.exec(configInfo.remoteUrl)) {
+                continue
+            }
+
             const url = await this.getUrlAsync(configInfo);
             urlsMap.set(key, url);
         }
